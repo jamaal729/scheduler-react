@@ -5,6 +5,7 @@ import DayListItem from "components/DayListItem.js";
 export default function DayList(props) {
 
   const days = props.days.map(day => {
+    
     return (
       <DayListItem
         name={day.name}
