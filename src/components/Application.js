@@ -5,6 +5,7 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
+import { getAppointmentsForDay } from "helpers/selectors";
 
 export default function Application(props) {
 
@@ -14,9 +15,9 @@ export default function Application(props) {
     appointments: {}
   });
 
-  const dailyAppointments = [];
-
   const setDay = day => setState({ ...state, day });
+
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   useEffect(() => {
     Promise.all([
