@@ -8,7 +8,7 @@ import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "help
 
 export default function Application(props) {
 
-  const { state, setDay, bookInterview, cancelInterview } = useApplicationData();
+  const { state, setDay, bookInterview, cancelInterview, updateSpots } = useApplicationData();
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
@@ -17,6 +17,7 @@ export default function Application(props) {
     const interview = getInterview(state, appointment.interview);
     return (
       <Appointment
+        {...appointment}
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
@@ -38,7 +39,8 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={state.days} day={state.day} setDay={setDay} />
+          <DayList days={state.days} day={state.day} setDay={setDay}
+            appointments={state.appointments} updateSpots={updateSpots} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
