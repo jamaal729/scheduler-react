@@ -40,20 +40,23 @@ export default function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      Promise.resolve(axios.get("http://localhost:8001/api/days")),
-      Promise.resolve(axios.get("http://localhost:8001/api/appointments")),
-      Promise.resolve(axios.get("http://localhost:8001/api/interviewers"))
+      // Promise.resolve(axios.get("http://localhost:8001/api/days")),
+      // Promise.resolve(axios.get("http://localhost:8001/api/appointments")),
+      // Promise.resolve(axios.get("http://localhost:8001/api/interviewers"))
+      Promise.resolve(axios.get("/api/days")),
+      Promise.resolve(axios.get("/api/appointments")),
+      Promise.resolve(axios.get("/api/interviewers"))
     ])
       .then(all => {
-        console.log(all[0]); console.log(all[1]); console.log(all[2]);
+        // console.log(all[0]); console.log(all[1]); console.log(all[2]);
         const [days, appointments, interviewers] = all;
-        console.log(days, appointments, interviewers);
+        // console.log(days, appointments, interviewers);
         dispatch({ type: SET_APPLICATION_DATA, value: all });
       })
   }, []);
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
+    // console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -68,7 +71,7 @@ export default function useApplicationData() {
   }
 
   function cancelInterview(id) {
-    console.log(id);
+    // console.log(id);
     const appointment = {
       ...state.appointments[id],
       interview: null
