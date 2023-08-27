@@ -11,7 +11,7 @@ afterEach(cleanup);
 
 describe("Application", () => {
 
-  it.skip("renders without crashing", () => {
+  it("renders without crashing", () => {
     render(<Application />);
   });
 
@@ -140,6 +140,5 @@ describe("Application", () => {
     fireEvent.click(getByAltText(appointment, "Close"));
     expect(getByAltText(appointment, "Delete")).toBeInTheDocument();
   });
-
 
 });
