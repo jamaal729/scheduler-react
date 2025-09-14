@@ -1,6 +1,7 @@
 export const getAppointmentsForDay = (state, day) => {
 
   let currentAppointmentIds = [];
+
   state.days.filter(d => {
     if (d.name === day) {
       currentAppointmentIds = d.appointments
