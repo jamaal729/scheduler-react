@@ -61,7 +61,22 @@ export default function useApplicationData() {
       .then(() => { setState({ ...state, appointments }); });
   }
 
-  return { state, setDay, bookInterview, cancelInterview };
+  function updateSpots(appointments, days, day) {
+    const currentDay = days.find(target => target.name === day.name);
+    const currentAppointments = [...currentDay.appointments];
+    const allSpots = currentAppointments.length;
+    const usedSpots = Object.values({ ...appointments }).reduce(
+      (total, appointment) => {
+        if (currentAppointments.includes(appointment.id)) {
+          if (appointment.interview) {
+            total++;
+          }
+        }
+        return total;
+      }, 0
+    );
+    return allSpots - usedSpots;
+  }
+
+  return { state, setDay, bookInterview, cancelInterview, updateSpots };
 }
-
-
