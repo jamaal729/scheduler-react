@@ -49,7 +49,7 @@ export default function useApplicationData() {
     ])
       .then(all => {
         // console.log(all[0]); console.log(all[1]); console.log(all[2]);
-        const [days, appointments, interviewers] = all;
+        // const [days, appointments, interviewers] = all;
         // console.log(days, appointments, interviewers);
         dispatch({ type: SET_APPLICATION_DATA, value: all });
       })
