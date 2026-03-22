@@ -8,6 +8,8 @@ import reducer, {
   SET_INTERVIEW
 } from "reducers/application";
 
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || "http://localhost:8001";
+
 export default function useApplicationData() {
 
   const [state, dispatch] = useReducer(reducer, {
@@ -19,9 +21,9 @@ export default function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      Promise.resolve(axios.get("/api/days")),
-      Promise.resolve(axios.get("/api/appointments")),
-      Promise.resolve(axios.get("/api/interviewers"))
+      Promise.resolve(axios.get(`${apiBaseUrl}/api/days`)),
+      Promise.resolve(axios.get(`${apiBaseUrl}/api/appointments`)),
+      Promise.resolve(axios.get(`${apiBaseUrl}/api/interviewers`))
     ])
       .then(all => {
         dispatch({ type: SET_APPLICATION_DATA, value: all });
@@ -37,7 +39,8 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
+
+    return axios.put(`${apiBaseUrl}/api/appointments/${id}`, { interview })
       .then(() => { dispatch({ type: SET_INTERVIEW, value: appointments }); });
   }
 
@@ -50,7 +53,8 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+
+    return axios.delete(`${apiBaseUrl}/api/appointments/${id}`)
       .then(() => { dispatch({ type: SET_INTERVIEW, value: appointments }); });
   }
 
