@@ -12,5 +12,5 @@
   command = "CI= npm run build"
 
 [build.environment]
-  REACT_APP_API_BASE_URL = "https://scheduler-api-production-c512.up.railway.app/"
-  REACT_APP_WEBSOCKET_URL = "wss://scheduler-api-production-c512.up.railway.app/"
+  REACT_APP_API_BASE_URL = "https://j729-scheduler-api-production.up.railway.app"
+  REACT_APP_WEBSOCKET_URL = "wss://j729-scheduler-api-production.up.railway.app"
